@@ -118,8 +118,8 @@ Behavior = BHV_FrontSearch
   condition = MODE==SURVEYING
   perpetual    = true
   updates      = SEARCH_UPDATES
-  //activeflag   = SURVEY_UNDERWAY = true
-  //inactiveflag = SURVEY_UNDERWAY = false
+  activeflag   = SURVEY_UNDERWAY = true
+  inactiveflag = SURVEY_UNDERWAY = false
   //endflag      = RETURN = true
   }
 
