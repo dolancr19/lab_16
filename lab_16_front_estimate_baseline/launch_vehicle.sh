@@ -1,10 +1,18 @@
-#!/bin/bash 
+#!/bin/bash
+
+//VNAME=$(id -un)
+
 #-------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
 #-------------------------------------------------------
 TIME_WARP=1
 JUST_MAKE="no"
+HOSTNAME=$(hostname -s)
 VNAME="archie"
+MOOS_PORT="9001"
+UDP_LISTEN_PORT="9201"
+SHOREIP="localhost"
+SHORE_LISTEN="9200"
 COOL_FAC=50
 COOL_STEPS=1000
 CONCURRENT="true"
@@ -32,6 +40,12 @@ for ARGI; do
         VNAME="${ARGI#--vname=*}"
     elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$TIME_WARP" = 1 ]; then 
         TIME_WARP=$ARGI
+	elif [ "${ARGI:0:8}" = "--shore=" ] ; then
+	SHOREIP="${ARGI#--shore=*}"
+    elif [ "${ARGI:0:7}" = "--mport" ] ; then
+	MOOS_PORT="${ARGI#--mport=*}"
+    elif [ "${ARGI:0:7}" = "--lport" ] ; then
+	UDP_LISTEN_PORT="${ARGI#--lport=*}"
     elif [ "${ARGI}" = "--just_build" -o "${ARGI}" = "-j" ] ; then
 	JUST_MAKE="yes"
     elif [ "${ARGI:0:6}" = "--warp" ] ; then
@@ -63,8 +77,8 @@ START_POS="0,0"
 
 #start first vehicle:                                                                                                                                                                                                                         
 nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
-   VNAME=$VNAME      START_POS=$START_POS                    \
-   VPORT="9001"       SHARE_LISTEN="9301"                      \
+   VNAME=$VNAME  VPORT=$MOOS_PORT  SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_POS                    \
+   SHOREIP=$SHOREIP SHORE_LISTEN=$SHORE_LISTEN                      \
    VTYPE=KAYAK          COOL_FAC=$COOL_FAC  COOL_STEPS=$COOL_STEPS\
    CONCURRENT=$CONCURRENT  ADAPTIVE=$ADAPTIVE
 
