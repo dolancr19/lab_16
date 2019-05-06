@@ -40,7 +40,7 @@ for ARGI; do
         VNAME="${ARGI#--vname=*}"
     elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$TIME_WARP" = 1 ]; then 
         TIME_WARP=$ARGI
-	elif [ "${ARGI:0:8}" = "--shore=" ] ; then
+    elif [ "${ARGI:0:8}" = "--shore=" ] ; then
 	SHOREIP="${ARGI#--shore=*}"
     elif [ "${ARGI:0:7}" = "--mport" ] ; then
 	MOOS_PORT="${ARGI#--mport=*}"
@@ -75,12 +75,14 @@ done
 
 START_POS="0,0"
 
-#start first vehicle:                                                                                                                                                                                                                         
+#start first vehicle:                                                                                                                                                                                                                     
 nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
-   VNAME=$VNAME  VPORT=$MOOS_PORT  SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_POS                    \
-   SHOREIP=$SHOREIP SHORE_LISTEN=$SHORE_LISTEN                      \
-   VTYPE=KAYAK          COOL_FAC=$COOL_FAC  COOL_STEPS=$COOL_STEPS\
-   CONCURRENT=$CONCURRENT  ADAPTIVE=$ADAPTIVE
+   VNAME=$VNAME                     VPORT=$MOOS_PORT  \
+   SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_PO          \
+   SHOREIP=$SHOREIP                 SHORE_LISTEN=$SHORE_LISTEN   \
+   VTYPE=KAYAK                      COOL_FAC=$COOL_FAC \
+   COOL_STEPS=$COOL_STEPS           CONCURRENT=$CONCURRENT \
+   ADAPTIVE=$ADAPTIVE 
 
 nsplug meta_vehicle.bhv targ_$VNAME.bhv -f VNAME=$VNAME      \
     START_POS=$START_POS SURVEY_X=$SURVEY_X SURVEY_Y=$SURVEY_Y \

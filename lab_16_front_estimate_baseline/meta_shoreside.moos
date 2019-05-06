@@ -61,7 +61,7 @@ ProcessConfig = pShare
   AppTick    = 2
   CommsTick  = 2
 
-  input = route = localhost:9300 & multicast_12
+  input = route = $(SHOREIP):$(SHARE_LISTEN)
 }
 
 
@@ -96,7 +96,7 @@ ProcessConfig = uFldNodeComms
 	AppTick   = 2
 	CommsTick = 2
 
-	comms_range      = 100
+	comms_range      = 40
 	critical_range   = 25
 	min_msg_interval = 0
 	max_msg_length   = 0
