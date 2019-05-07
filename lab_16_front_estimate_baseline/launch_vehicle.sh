@@ -11,7 +11,7 @@ HOSTNAME=$(hostname -s)
 VNAME="archie"
 MOOS_PORT="9001"
 UDP_LISTEN_PORT="9201"
-SHOREIP="localhost"
+SHORE_IP="localhost"
 SHORE_LISTEN="9200"
 COOL_FAC=50
 COOL_STEPS=1000
@@ -79,7 +79,7 @@ START_POS="0,0"
 nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
    VNAME=$VNAME                     VPORT=$MOOS_PORT  \
    SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_POS          \
-   SHOREIP=$SHOREIP                 SHORE_LISTEN=$SHORE_LISTEN   \
+   SHORE_IP=$SHORE_IP                 SHORE_LISTEN=$SHORE_LISTEN   \
    VTYPE=KAYAK                      COOL_FAC=$COOL_FAC \
    COOL_STEPS=$COOL_STEPS           CONCURRENT=$CONCURRENT \
    ADAPTIVE=$ADAPTIVE 
