@@ -1,6 +1,6 @@
 #!/bin/bash
 
-//VNAME=$(id -un)
+VNAME=$(id -un)
 
 #-------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -78,7 +78,7 @@ START_POS="0,0"
 #start first vehicle:                                                                                                                                                                                                                     
 nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
    VNAME=$VNAME                     VPORT=$MOOS_PORT  \
-   SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_PO          \
+   SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_POS          \
    SHOREIP=$SHOREIP                 SHORE_LISTEN=$SHORE_LISTEN   \
    VTYPE=KAYAK                      COOL_FAC=$COOL_FAC \
    COOL_STEPS=$COOL_STEPS           CONCURRENT=$CONCURRENT \
