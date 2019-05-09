@@ -41,7 +41,7 @@ for ARGI; do
     elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$TIME_WARP" = 1 ]; then 
         TIME_WARP=$ARGI
     elif [ "${ARGI:0:8}" = "--shore=" ] ; then
-	SHOREIP="${ARGI#--shore=*}"
+	SHORE_IP="${ARGI#--shore=*}"
     elif [ "${ARGI:0:7}" = "--mport" ] ; then
 	MOOS_PORT="${ARGI#--mport=*}"
     elif [ "${ARGI:0:7}" = "--lport" ] ; then

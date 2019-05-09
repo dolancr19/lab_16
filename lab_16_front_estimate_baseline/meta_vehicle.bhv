@@ -122,7 +122,7 @@ Behavior = BHV_FrontSearch
   name = frontsearch
   vessel = $(VNAME)
   speed = 2   // meters per second
-  pwt = 75
+  pwt = 50
   condition = MODE==SURVEYING
   perpetual    = true
   updates      = SEARCH_UPDATES

@@ -26,7 +26,7 @@ done
 #-------------------------------------------------------
 nsplug meta_shoreside.moos targ_shoreside.moos -f WARP=$TIME_WARP \
    VNAME="shoreside"             SHORE_LISTEN=9000                \
-   SHOREIP=localhost   SHARE_LISTEN=9200
+   SHORE_IP=localhost   SHARE_LISTEN=9200
 
 if [ ${JUST_MAKE} = "yes" ] ; then
     exit 0

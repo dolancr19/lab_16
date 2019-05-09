@@ -61,7 +61,7 @@ ProcessConfig = pShare
   AppTick    = 2
   CommsTick  = 2
 
-  input = route = $(SHOREIP):$(SHARE_LISTEN)
+  input = route = $(SHORE_IP):$(SHARE_LISTEN)
 }
 
 
@@ -96,8 +96,8 @@ ProcessConfig = uFldNodeComms
 	AppTick   = 2
 	CommsTick = 2
 
-	comms_range      = 1
-	critical_range   = 1
+	comms_range      = 100
+	critical_range   = 25
 	min_msg_interval = 0
 	max_msg_length   = 0
 	groups           = true
