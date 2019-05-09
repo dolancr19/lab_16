@@ -17,6 +17,7 @@ RETURN_POS="5,0"
 LOITER_POS="x=100,y=-180"
 GRAB_POS=""
 UNTAG_POS=""
+WAYPOINT="-50,-50"
 
 COOL_FAC=50
 COOL_STEPS=1000
@@ -115,16 +116,16 @@ for ARGI; do
     elif [ "${ARGI}" = "--sim" -o "${ARGI}" = "-s" ] ; then
         SIM="SIM"
         echo "Simulation mode ON."
-    elif [ "${ARGI}" = "--start-x=" ] ; then
+    elif [ "${ARGI:0:10}" = "--start-x=" ] ; then
         START_POS_X="${ARGI#--start-x=*}"
-    elif [ "${ARGI}" = "--start-y=" ] ; then
+    elif [ "${ARGI:0:10}" = "--start-y=" ] ; then
         START_POS_Y="${ARGI#--start-y=*}"
-    elif [ "${ARGI}" = "--start-a=" ] ; then
+    elif [ "${ARGI:0:10}" = "--start-a=" ] ; then
         START_POS_A="${ARGI#--start-a=*}"
-    elif [ "${ARGI}" = "--cool" ] ; then
+    elif [ "${ARGI:0:6}" = "--cool" ] ; then
         COOL_FAC="${ARGI#--cool=*}"
         UNDEFINED_ARG=""
-    elif [ "${ARGI}" = "--angle" ] ; then
+    elif [ "${ARGI:0:7}" = "--angle" ] ; then
         DEGREES1="${ARGI#--angle=*}"
         UNDEFINED_ARG=""
     elif [ "${ARGI}" = "--unconcurrent" -o "${ARGI}" = "-uc" ] ; then
@@ -132,6 +133,9 @@ for ARGI; do
         UNDEFINED_ARG=""
     elif [ "${ARGI}" = "--adaptive" -o "${ARGI}" = "-a" ] ; then
         ADAPTIVE="true"
+        UNDEFINED_ARG=""
+    elif [ "${ARGI:0:10}" = "--waypoint" ] ; then
+        WAYPOINT="${ARGI#--waypoint=*}"
         UNDEFINED_ARG=""
     else	
         echo "Undefined argument:" $ARGI
@@ -225,6 +229,7 @@ nsplug meta_fld_vehicle.bhv targ_${VNAME}.bhv -f  \
 	SURVEY_Y=$SURVEY_Y \
 	HEIGHT=$HEIGHT1   WIDTH=$WIDTH1 LANE_WIDTH=$LANE_WIDTH1 \
 	DEGREES=$DEGREES1\
+        WAYPOINT=$WAYPOINT\
         UNTAG_POS=$UNTAG_POS
 
 
