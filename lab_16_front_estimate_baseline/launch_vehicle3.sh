@@ -24,8 +24,8 @@ WIDTH1=120
 LANE_WIDTH1=25
 DEGREES1=270
 START_POS="0,0"
-WAYPOINT="-80,-80"
-REPORT_INTERVAL="50"
+WAYPOINT="-20,-50"
+REPORT_INTERVAL="100"
 
 for ARGI; do
     if [ "${ARGI}" = "--help" -o "${ARGI}" = "-h" ] ; then
@@ -85,11 +85,8 @@ done
 #-------------------------------------------------------
 #  Part 2: Create the .moos and .bhv files. 
 #-------------------------------------------------------
-
-
-
 #start first vehicle:                                                                                                                                                                                                                     
-nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
+nsplug meta_vehicle2.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
    VNAME=$VNAME                     VPORT=$MOOS_PORT  \
    SHARE_LISTEN=$UDP_LISTEN_PORT    START_POS=$START_POS          \
    SHORE_IP=$SHORE_IP                 SHORE_LISTEN=$SHORE_LISTEN   \
@@ -98,7 +95,7 @@ nsplug meta_vehicle.moos targ_$VNAME.moos -f WARP=$TIME_WARP  \
    REPORT_INTERVAL=$REPORT_INTERVAL\
    ADAPTIVE=$ADAPTIVE\
 
-nsplug meta_vehicle.bhv targ_$VNAME.bhv -f VNAME=$VNAME      \
+nsplug meta_vehicle2.bhv targ_$VNAME.bhv -f VNAME=$VNAME      \
     START_POS=$START_POS SURVEY_X=$SURVEY_X SURVEY_Y=$SURVEY_Y \
         HEIGHT=$HEIGHT1   WIDTH=$WIDTH1 LANE_WIDTH=$LANE_WIDTH1 \
         WAYPOINT=$WAYPOINT        DEGREES=$DEGREES1\
