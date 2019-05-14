@@ -58,6 +58,7 @@ Behavior = BHV_Waypoint
 	 lead_damper=1
 	//points = format=lawnmower, label=archie_survey, x=$(SURVEY_X), y=$(SURVEY_Y), width=$(WIDTH), height=$(HEIGHT),lane_width=$(LANE_WIDTH), rows=ns, degs=$(DEGREES)
 	points = $(WAYPOINT)
+	soft_poly_breach = true
 
       repeat = 0
  visual_hints = nextpt_color=red, nextpt_lcolor=green
@@ -84,6 +85,7 @@ Behavior = BHV_Waypoint
           lead = 8
 	  lead_damper=1
 	points = format=lawnmower, label=archie_survey, x=$(SURVEY_X), y=$(SURVEY_Y), width=$(WIDTH), height=$(HEIGHT),lane_width=$(LANE_WIDTH), rows=north-south, degs=$(DEGREES)
+	soft_poly_breach = true
 
         repeat = 0
   visual_hints = nextpt_color=red, nextpt_lcolor=green
