@@ -5,7 +5,8 @@
 initialize   DEPLOY  = false
 initialize   RETURN  = false
 initialize   STATION_KEEP = false
-initialize   SURVEY  = true
+initialize   SURVEY1  = true
+initialize   SURVEY2 = true
 initialize   AVOID   = true
 initialize   SURVEY_UNDERWAY = false
 initialize   OPREGION = true
@@ -25,9 +26,15 @@ set MODE = TRANSITING {
   TRANSIT = true
 }
 
-set MODE = SURVEYING {
+set MODE = SURVEYING1 {
   MODE = ACTIVE
-  SURVEY = true
+  SURVEY1 = true
+  RETURN = false
+}
+
+set MODE = SURVEYING2 {
+  MODE = ACTIVE
+  SURVEY2 = true
   RETURN = false
 }
 //----------------------------------------------
@@ -63,12 +70,13 @@ Behavior = BHV_Waypoint
 { 
   name         = waypt_survey
   pwt          = 100
-  condition    = MODE==SURVEYING
+  condition    = MODE==SURVEYING1
   perpetual    = true
   updates      = SURVEY_UPDATES
   activeflag   = SURVEY_UNDERWAY = true
   inactiveflag = SURVEY_UNDERWAY = false
-  endflag      = RETURN = true
+  endflag      = SURVEY1=false
+  endflag      = SURVEY2=true
 
          speed = 2   // meters per second
         radius = 5.0
@@ -91,7 +99,8 @@ Behavior = BHV_Waypoint
   condition  = RETURN = true
   condition  = DEPLOY = true
   perpetual  = true
-  runflag    = SURVEY = false
+  runflag    = SURVEY1 = false
+  runflag    = SURVEY2 = false
   endflag    = RETURN = false
   endflag    = DEPLOY = false
 
@@ -142,38 +151,38 @@ Behavior = BHV_AvoidCollision
 }
 
 //-------------------------------------------------
-//Behavior = BHV_FrontSearch2
-//{
-//  name = frontsearch
-//  vessel = $(VNAME)
-//  speed = 2   // meters per second
-//  pwt = 5
-//  condition = MODE==SURVEYING
-//  perpetual    = true
-//  updates      = SEARCH_UPDATES
-//  activeflag   = SURVEY_UNDERWAY = true
-//  inactiveflag = SURVEY_UNDERWAY = false
-  //endflag      = RETURN = true
-//  }
+Behavior = BHV_FrontSearch
+{
+  name = frontsearch
+  vessel = $(VNAME)
+  speed = 2   // meters per second
+  pwt = 5
+  condition = MODE==SURVEYING2
+  perpetual    = true
+  updates      = SEARCH_UPDATES
+  activeflag   = SURVEY_UNDERWAY = true
+  inactiveflag = SURVEY_UNDERWAY = false
+  endflag      = RETURN = true
+  }
 
 //-------------------------------------------------
 Behavior = BHV_ConstantSpeed
 {
-name=constant_spd_search
-pwt=100
-condition=MODE==SURVEYING
-perpetual=true
-updates=CONSTANT_SPD_SEARCH_UPDATES
-speed=2
+  name=constant_spd_search
+  pwt=100
+  condition=(MODE==SURVEYING1) or (MODE== SURVEYING2)
+  perpetual=true
+  updates=CONSTANT_SPD_SEARCH_UPDATES
+  speed=2
 }
 
 //-------------------------------------------------
 Behavior = BHV_MaintainArea
 {
-name=maintain_area
-pwt=100
-condition=MODE==SURVEYING
-condition=OPREGION=true
-perpetual=true
-updates=MAINTAIN_UPDATES
+  name=maintain_area
+  pwt=100
+  condition=(MODE==SURVEYING1) or (MODE== SURVEYING2)
+  condition=OPREGION=true
+  perpetual=true
+  updates=MAINTAIN_UPDATES
 }
