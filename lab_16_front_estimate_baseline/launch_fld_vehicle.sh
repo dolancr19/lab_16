@@ -1,7 +1,7 @@
 #!/bin/bash
 TIME_WARP=1
 
-SHORE_IP=18.20.133.98
+SHORE_IP="localhost"
 SHORE_LISTEN="9200"
 
 TRAIL_RANGE="3"
@@ -12,12 +12,12 @@ VTEAM=""
 VNAME=""
 VMODEL="M300"
 
-START_POS="0,0,180"
+START_POS="20,0"
 RETURN_POS="5,0"
 LOITER_POS="x=100,y=-180"
 GRAB_POS=""
 UNTAG_POS=""
-WAYPOINT="-50,-50"
+WAYPOINT="-50,-20"
 
 COOL_FAC=50
 COOL_STEPS=1000
@@ -29,6 +29,7 @@ HEIGHT1=150
 WIDTH1=120
 LANE_WIDTH1=25
 DEGREES1=270
+REPORT_INTERVAL="100"
 
 #-------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -134,6 +135,9 @@ for ARGI; do
     elif [ "${ARGI}" = "--adaptive" -o "${ARGI}" = "-a" ] ; then
         ADAPTIVE="true"
         UNDEFINED_ARG=""
+    elif [ "${ARGI:0:8}" = "--report" ] ; then
+        REPORT_INTERVAL="${ARGI#--report=*}"
+        UNDEFINED_ARG=""
     elif [ "${ARGI:0:10}" = "--waypoint" ] ; then
         WAYPOINT="${ARGI#--waypoint=*}"
         UNDEFINED_ARG=""
@@ -212,6 +216,7 @@ nsplug meta_fld_vehicle.moos targ_${VNAME}.moos -f \
     START_POS=$START_POS         \
     COOL_FAC=$COOL_FAC           \
     COOL_STEPS=$COOL_STEPS       \
+    REPORT_INTERVAL=$REPORT_INTERVAL\
     CONCURRENT=$CONCURRENT \
     ADAPTIVE=$ADAPTIVE\    
     $SIM                         
