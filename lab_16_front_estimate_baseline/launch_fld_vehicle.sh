@@ -29,6 +29,8 @@ HEIGHT1=150
 WIDTH1=120
 LANE_WIDTH1=25
 DEGREES1=270
+START_POS="20,0"
+WAYPOINT="50,-20"
 REPORT_INTERVAL="100"
 
 #-------------------------------------------------------
@@ -134,6 +136,9 @@ for ARGI; do
         UNDEFINED_ARG=""
     elif [ "${ARGI}" = "--adaptive" -o "${ARGI}" = "-a" ] ; then
         ADAPTIVE="true"
+        UNDEFINED_ARG=""
+   elif [ "${ARGI:0:7}" = "--start" ] ; then
+        START_POS="${ARGI#--start=*}"
         UNDEFINED_ARG=""
     elif [ "${ARGI:0:8}" = "--report" ] ; then
         REPORT_INTERVAL="${ARGI#--report=*}"
