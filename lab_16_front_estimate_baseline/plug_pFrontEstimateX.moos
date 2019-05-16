@@ -8,16 +8,16 @@ ProcessConfig = pFrontEstimateX
   cooling_steps = $(COOL_STEPS)
   min_offset = -120
   max_offset = -60
-  min_angle = -5
+  min_angle = -10
   max_angle = 15
 
-  min_amplitude = 0
+  min_amplitude = 5
   max_amplitude = 50
 
   min_period = 200
-  max_period = 600
+  max_period = 450
   min_wavelength = 100
-  max_wavelength = 500
+  max_wavelength = 450
 
   //min_alpha = 300
   //max_alpha = 800
@@ -25,8 +25,8 @@ ProcessConfig = pFrontEstimateX
   min_alpha = 350
   max_alpha = 350
 
-  min_beta = 10
-  max_beta = 30
+  min_beta = 15
+  max_beta = 45
   min_T_N = 15
   max_T_N = 25 
   min_T_S = 20
